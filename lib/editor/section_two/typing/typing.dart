@@ -8,7 +8,7 @@ class TypingSection extends StatefulWidget {
 }
 
 class _TypingSectionState extends State<TypingSection> {
-  List<Caption> captions = [
+  CaptionDataList captions = CaptionDataList(captions: [
     Caption(text: '0', placeholder: 'Start typing here...'),
     Caption(text: '1', placeholder: 'Start typing here...'),
     Caption(text: '2', placeholder: 'Start typing here...'),
@@ -16,26 +16,20 @@ class _TypingSectionState extends State<TypingSection> {
     Caption(text: '4', placeholder: 'Start typing here...'),
     Caption(text: '5', placeholder: 'Start typing here...'),
     Caption(text: '6', placeholder: 'Start typing here...'),
+  ]);
 
-  ];
   @override
-  Widget build(BuildContext context) {
-    return Flexible(
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) => Flexible(
       child: Column(
         children: [
-          Flexible(child: CaptionList(captions: captions)),
-          Container(
-            child: TextButton(
-              child: Text(captions[1].text),
-              onPressed: () {
-                setState(() {
-                  print(captions.removeAt(1).text);
-                });
-              },
-            ),
-          )
+          Flexible(child: CaptionList()),
         ],
       ),
     );
-  }
 }

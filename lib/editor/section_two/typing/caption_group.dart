@@ -2,8 +2,9 @@ import "package:flutter/material.dart";
 import 'package:transcaption/models/Caption.dart';
 
 class CaptionGroup extends StatefulWidget {
+
   final Caption caption;
-  CaptionGroup({required this.caption});
+  CaptionGroup({required this.caption}): super(key: UniqueKey());
   @override
   _CaptionGroupState createState() => _CaptionGroupState();
 }

@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class Caption {
   String text, placeholder;
+  Key key;
 
-  Caption({this.text = '', this.placeholder = ''});
+  Caption({this.text = '', this.placeholder = '', required this.key});
 }
 
 class CaptionDataList {
@@ -15,12 +17,14 @@ class CaptionDataList {
     captions.add(caption);
   }
 
+  void insert(int index, Caption caption) {
+    captions.insert(index, caption);
+  }
+
   Caption remove(int captionIndex) {
+    print(captionIndex);
     var deleted = captions.removeAt(captionIndex);
-    print('datalistfunction');
-    for (int i = 0; i < captions.length; i++) {
-      print(captions[i].text);
-    }
+    print(deleted.text);
     return deleted;
   }
 }

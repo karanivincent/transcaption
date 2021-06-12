@@ -13,12 +13,16 @@ class CaptionList extends StatefulWidget {
 
 class _CaptionListState extends State<CaptionList> {
   int focusedCaption = -1;
-  void captionRemove(int index) {
+  void changeFocus(int index) {
     setState(() {
-      focusedCaption = index - 1;
-      widget.captionData.remove(index);
-
+      focusedCaption = index;
+      print('focus changed $focusedCaption');
     });
+  }
+
+  void captionRemove(int index) {
+    widget.captionData.remove(index);
+    changeFocus(index - 1);
   }
 
   void captionAdd(Caption caption) {
@@ -28,10 +32,8 @@ class _CaptionListState extends State<CaptionList> {
   }
 
   void captionInsert(int index, Caption caption) {
-    setState(() {
-      focusedCaption = index;
-      widget.captionData.insert(index, caption);
-    });
+    widget.captionData.insert(index, caption);
+    changeFocus(index);
   }
 
   @override
@@ -53,6 +55,7 @@ class _CaptionListState extends State<CaptionList> {
                       onAdd: captionAdd,
                       onInsert: captionInsert,
                       onRemove: captionRemove,
+                      onChangeFocus: changeFocus,
                     );
                   },
                   childCount: widget.captionData.captions.length,

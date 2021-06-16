@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:transcaption/editor/section_two/typing/typing.dart';
+// import 'package:transcaption/editor/section_two/typing/typing.dart';
 import 'package:transcaption/editor/section_two/video_player/video.dart';
 
 class SectionTwo extends StatelessWidget {
@@ -10,7 +10,7 @@ class SectionTwo extends StatelessWidget {
       child: Column(
 
         children:[
-          TypingSection(),
+          // TypingSection(),
           VideoSection(),
           ],
 

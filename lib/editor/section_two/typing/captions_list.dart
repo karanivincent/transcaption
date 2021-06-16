@@ -38,31 +38,48 @@ class _CaptionListState extends State<CaptionList> {
 
   @override
   Widget build(BuildContext context) {
+    print('list focused caption: $focusedCaption');
     return Container(
       child: Column(
         children: [
           Flexible(
-            child: CustomScrollView(
-              slivers: <Widget>[
-                SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    return CaptionGroup(
-                      caption: widget.captionData.captions[index],
-                      key: widget.captionData.captions[index].key,
-                      index: index,
-                      focusedCaption: focusedCaption,
-                      onAdd: captionAdd,
-                      onInsert: captionInsert,
-                      onRemove: captionRemove,
-                      onChangeFocus: changeFocus,
-                    );
-                  },
-                  childCount: widget.captionData.captions.length,
-                  semanticIndexOffset: 3,
-                )),
-              ],
-            ),
+            child: ListView(
+                children: widget.captionData.captions
+                    .asMap()
+                    .map((index, caption) => MapEntry(
+                          index,
+                          CaptionGroup(
+                            caption: widget.captionData.captions[index],
+                            key: widget.captionData.captions[index].key,
+                            index: index,
+                            focusedCaption: focusedCaption,
+                            onAdd: captionAdd,
+                            onInsert: captionInsert,
+                            onRemove: captionRemove,
+                            onChangeFocus: changeFocus,
+                          ),
+                        ))
+                    .values
+                    .toList()
+                //   SliverList(
+                //       delegate: SliverChildBuilderDelegate(
+                //     (BuildContext context, int index) {
+                //       return CaptionGroup(
+                //         caption: widget.captionData.captions[index],
+                //         key: widget.captionData.captions[index].key,
+                //         index: index,
+                //         focusedCaption: focusedCaption,
+                //         onAdd: captionAdd,
+                //         onInsert: captionInsert,
+                //         onRemove: captionRemove,
+                //         onChangeFocus: changeFocus,
+                //       );
+                //     },
+                //     childCount: widget.captionData.captions.length,
+                //     semanticIndexOffset: 3,
+                //   )),
+                // ],
+                ),
           ),
           Container(
             child: TextButton(

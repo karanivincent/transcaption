@@ -11,11 +11,22 @@ class VideoSection extends StatelessWidget {
       child: Column(
         children: [
           TimeSlider(),
-          Row(
-            children: [
-              VideoControls(),
-              VideoDisplay(),
-            ],
+          Flexible(
+            child: Row(
+              children: [
+                Container(
+                  child: VideoControls(),
+                  color: Colors.green,
+                  width: 40,
+                  transform: Matrix4.translationValues(-40, 0, 0),
+                  ),
+                Expanded(
+                  child: Container(
+                    color: Colors.grey.shade800,
+                    child: VideoDisplay())
+                  ),
+              ],
+            ),
           )
 
         ],

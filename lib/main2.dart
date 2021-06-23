@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:transcaption/video_setup.dart';
-import './main.dart';
+import 'main2.dart';
 
 // if (dart.library.html) 'dart:ui' as ui;
 void main() => runApp(MyApp());

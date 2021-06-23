@@ -1,37 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:transcaption/home.dart';
+import 'package:transcaption/video_setup.dart';
+import './main.dart';
 
-void main() {
-  runApp(
-    ProviderScope(
-      child: MyApp(),
-      ),
-    );
+// if (dart.library.html) 'dart:ui' as ui;
+void main() => runApp(MyApp());
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class _MyAppState extends State<MyApp> {
+  late String _videoSrc;
+  final String _localVideoPlayerId = 'local-video-player';
+  // TODO: VideoSetup class to be defined later
+  final VideoSetup _videoSetup = VideoSetup();
+  // TODO: to be completed later
+  Future<void> _registerNativeVideoPlayer() async {}
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+      home: Scaffold(
+        body: Center(
+          child: (_videoSrc == null)
+              ? TextButton(
+                  onPressed: () => _registerNativeVideoPlayer(),
+                  child: Text('Upload Video'),
+                )
+              : SizedBox(
+                  width: 200,
+                  height: 200,
+                  // This won't work for now
+                  child: HtmlElementView(viewType: _localVideoPlayerId),
+                ),
+        ),
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => HomePage(),
-      },
     );
   }
+}
+
+/// dummy class to resolve dart:ui and analyzer issues
+class PlatformViewRegistry {
+  static registerViewFactory(String viewId, dynamic cb) {}
 }
